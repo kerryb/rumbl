@@ -6,6 +6,7 @@ defmodule Rumbl.Repo do
       %Rumbl.User{id: 1, name: "Xander Harris", username: "xander", password: "sidekick"},
     ]
   end
+  def all(_module), do: []
 
   def get(module, id) do
     all(module) |> Enum.find(fn map -> map.id == id end)
