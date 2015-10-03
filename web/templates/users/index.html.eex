@@ -9,11 +9,7 @@
   </thead>
   <tbody>
     <%= for user <- @users do %>
-      <tr>
-        <td><%= user.username %></td>
-        <td><%= user.name %></td>
-        <td><%= link "view", to: users_path(@conn, :show, user.id) %></td>
-      </tr>
-    <%= end %>
+      <%= render "_user.html", conn: @conn, user: user %>
+    <% end %>
   </tbody>
 </table>
