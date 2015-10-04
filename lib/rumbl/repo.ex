@@ -9,7 +9,7 @@ defmodule Rumbl.Repo do
   def all(_module), do: []
 
   def get(module, id) do
-    all(module) |> Enum.find(fn map -> map.id == id end)
+    all(module) |> Enum.find(fn map -> map.id == String.to_integer(id) end)
   end
 
   def get_by(module, params) do
