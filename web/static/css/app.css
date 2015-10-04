@@ -78,3 +78,5 @@ form.link, form.button {
     border-bottom: 0;
   }
 }
+
+body { padding-top: 70px; }
