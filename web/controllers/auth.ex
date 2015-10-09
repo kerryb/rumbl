@@ -17,4 +17,18 @@ defmodule Rumbl.Auth do
     |> put_session(:user_id, user.id)
     |> configure_session(renew: true)
   end
+
+  def login_with_password conn, username, password, opts do
+    repo = Keyword.fetch! opts, :repo
+    user = repo.get_by Rumbl.User, username: username
+    if user && Comeonin.Bcrypt.checkpw(password, user.password_hash) do
+      {:ok, login(conn, user)}
+    else
+      {:error, conn}
+    end
+  end
+
+  def logout conn do
+    configure_session conn, drop: true
+  end
 end
