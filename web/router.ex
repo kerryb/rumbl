@@ -22,6 +22,7 @@ defmodule Rumbl.Router do
     get "/logout", SessionController, :delete, as: :logout
 
     get "/", PageController, :index
+    get "/watch/:id", WatchController, :show
   end
 
   scope "/manage", Rumbl do
@@ -29,9 +30,4 @@ defmodule Rumbl.Router do
 
     resources "/videos", VideoController
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", Rumbl do
-  #   pipe_through :api
-  # end
 end
