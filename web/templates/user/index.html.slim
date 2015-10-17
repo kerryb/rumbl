@@ -1,0 +1,12 @@
+h2 Users
+p
+  = button "Create a new user", to: user_path(@conn, :new), method: :get, class: "btn btn-success"
+table.table.table-striped
+  thead
+    tr
+      th Username
+      th Name
+      th
+  tbody
+    = for user <- @users do
+      = render "user.html", conn: @conn, user: user

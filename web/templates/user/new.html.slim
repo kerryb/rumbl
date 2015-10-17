@@ -1,0 +1,17 @@
+h1 New User
+= form_for @changeset, user_path(@conn, :create), fn f ->
+  = unless Enum.empty? f.errors do
+    .alert.alert-danger
+      p Please fix these issues and try again:
+      ul
+        = for {attr, message} <- f.errors do
+          li
+            = humanize attr
+            = message
+  .form-group
+    = text_input f, :username, placeholder: "Username", class: "form-control"
+  .form-group
+    = text_input f, :name, placeholder: "Name", class: "form-control"
+  .form-group
+    = password_input f, :password, placeholder: "Password", class: "form-control"
+  = submit "Create User", class: "btn btn-primary"

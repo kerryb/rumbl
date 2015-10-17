@@ -1,0 +1,4 @@
+tr
+  td = @user.username
+  td = @user.name
+  td = link "view", to: user_path(@conn, :show, @user.id)

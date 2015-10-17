@@ -1,0 +1,30 @@
+doctype html
+html lang="en" 
+  head
+    meta content="text/html; charset=UTF-8" http-equiv="Content-Type"
+    meta charset="utf-8"
+    meta content="IE=edge" http-equiv="X-UA-Compatible"
+    meta content="width=device-width, initial-scale=1" name="viewport"
+    meta content="" name="description"
+    meta content="" name="author"
+    title Rumbl
+    link href="#{static_path @conn, "/css/app.css"}" rel="stylesheet"
+  body
+    .container role="main" 
+      nav.navbar.navbar-default.navbar-fixed-top
+        .container
+          a.navbar-brand href="/"  Rumbl
+          = if @current_user do
+            ul.nav.navbar-nav
+              li
+                = link "Videos", to: video_path(@conn, :index)
+          p.navbar-text.navbar-right
+            = if @current_user do
+              = @current_user.name
+              = link "Log out", to: logout_path(@conn, :delete)
+            - else
+              = link "Log in", to: session_path(@conn, :new)
+      <p class="alert alert-info" role="alert"><%= get_flash @conn, :info %></p>
+      <p class="alert alert-danger" role="alert"><%= get_flash @conn, :error %></p>
+      = @inner
+    script src="#{static_path @conn, "/js/app.js"}"

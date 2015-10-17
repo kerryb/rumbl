@@ -1,0 +1,14 @@
+h2
+  = @video.title
+.row
+  .col-sm-7
+    #video data-id=@video.id data-player-id=player_id(@video)
+  .col-sm-5
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title Annotations
+      #msg-container.panel-body.annotations
+      .panel-footer
+        textarea#msg-input.form-control placeholder="Comment..." rows="3" 
+        button#msg-submit.btn.btn-primary.form-control type="submit" 
+          | Post
