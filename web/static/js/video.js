@@ -22,10 +22,14 @@ let Video = {
     })
 
     vidChannel.join().
-      receive("ok", resp => console.log("Joined video channel", resp)).
+      receive("ok", ({annotations}) => {
+        annotations.forEach(annotation => this.renderAnnotation(msgContainer, annotation))
+      }).
       receive("error", reason => console.log("Failed to join video channel", reason))
 
     vidChannel.on("new_annotation", (resp) => {
+      console.log("New annotation!")
+      console.log(resp)
       this.renderAnnotation(msgContainer, resp)
     })
   },
