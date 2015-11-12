@@ -21,6 +21,13 @@ let Video = {
       msgInput.value = ""
     })
 
+    msgContainer.addEventListener("click", e => {
+      e.preventDefault
+      let seconds = e.target.getAttribute("data-seek")
+      if (!seconds) { return }
+      Player.seekTo(seconds)
+    })
+
     vidChannel.join().
       receive("ok", resp => {
         this.scheduleMessages(msgContainer, resp.annotations)
@@ -36,6 +43,7 @@ let Video = {
 
   renderAnnotation(msgContainer, {user, body, at}) {
     let template = document.createElement("div")
+    template.setAttribute("data-seek", at)
     template.innerHTML = `
     [${this.formatTime(at)}] <b>${user.username}</b>: ${body}
     `
