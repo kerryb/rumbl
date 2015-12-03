@@ -1,13 +1,13 @@
 defmodule Rumbl.Counter do
   use GenServer
 
-  def inc(pid), do: GenServer.cast(pid, :inc)
+  def inc(pid), do: GenServer.cast pid, :inc
 
-  def dec(pid), do: GenServer.cast(pid, :dec)
+  def dec(pid), do: GenServer.cast pid, :dec
 
-  def val(pid, timeout \\ 5000), do: GenServer.call(pid, :val)
+  def val(pid, timeout \\ 5000), do: GenServer.call pid, :val
 
-  def start_link(initial_val), do: GenServer.start_link(__MODULE__, initial_val)
+  def start_link(initial_val), do: GenServer.start_link __MODULE__, initial_val
 
   def init(initial_val), do: {:ok, initial_val}
 
